@@ -9,6 +9,7 @@ import pic_8 from '../../assets/images/image-8.webp'
 import pic_9 from '../../assets/images/image-9.webp'
 import pic_10 from '../../assets/images/image-10.jpeg'
 import pic_11 from '../../assets/images/image-11.jpeg'
+import add_pic from '../../assets/images/add2.jpeg'
 import { useMemo, useState } from "react";
 import ImageContainer from './ImageContainer'
 import {
@@ -18,7 +19,6 @@ import {
     useSensors,
 } from "@dnd-kit/core";
 import { SortableContext, arrayMove } from "@dnd-kit/sortable";
-import testPic from '../../assets/images/image-1.webp'
 
 // dummy data
 const dummyData = [
@@ -179,62 +179,66 @@ const ImageGallery = () => {
         //     </div>
         // </div>
 
-        <div className="">
-            <section className="">
-                <div className="container mx-auto px-4 mt-5">
-                    <div className="lg:pt-12 pt-6 w-full md:w-12/12 px-4 text-center">
-                        <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
-                            <div className="px-4 py-5 flex-auto">
-                                <div className='mt-2 mb-4 border flex justify-between p-5'>
-                                    <div>Selected images: {selectedImages.length}</div>
-                                    <div>
-                                        {selectedImages.length > 0 && (
-                                            <button
-                                                className="bg-red-500 text-white px-4 py-2 rounded ml-4"
-                                                onClick={handleDeleteSelected}
-                                            >
-                                                Delete Selected Files
-                                            </button>
-                                        )}
-                                    </div>
-                                </div>
-                                <div className='mt-2 mb-4 border  p-3'>
-                                    <DndContext
-                                        sensors={sensors}
-                                        onDragStart={onDragStart}
-                                        onDragEnd={onDragEnd}
-                                    // onDragOver={onDragOver}
-                                    >
-                                        <div className="container mx-auto p-4">
-                                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                                                <SortableContext items={imagesId}>
-                                                    {images.map((image, i) => (
-                                                        <ImageContainer
-                                                            key={image.id}
-                                                            i={i}
-                                                            image={image}
-                                                            handleImageClick={handleImageClick}
-                                                        />
 
-                                                    ))}
-                                                    <button
-                                                        onClick={() => { createNewImage(); }}
-                                                        className="relative bg-white border border-gray-300 col-span-1 row-span-1 w-full h-auto cursor-pointer  "
-                                                    >
-                                                        Add Image
-                                                    </button>
-                                                </SortableContext>
-                                            </div>
-                                        </div>
-                                    </DndContext>
+        <section className="">
+            <div className="container mx-auto px-4 mt-5">
+                <div className="lg:pt-12 pt-6 w-full md:w-12/12 px-4 text-center">
+                    <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+                        <div className="px-4 py-5 flex-auto">
+                            <div className='mt-2 mb-4 border flex justify-between p-5'>
+                                <div> {selectedImages.length == 0 ? 'Ollyo Gallery' : (selectedImages.length == 1 ? `${selectedImages.length} File Selected` : `${selectedImages.length} Files Selected`)}</div>
+                                <div>
+                                    {selectedImages.length > 0 && (
+                                        <p
+                                            className=" text-red-500  px-4 font-semibold rounded ml-4 cursor-pointer"
+                                            onClick={handleDeleteSelected}
+                                        >
+                                            {selectedImages.length == 1 ? 'Delete File' : 'Delete Files'}
+                                        </p>
+                                    )}
                                 </div>
+                            </div>
+                            <div className='mt-2 mb-4 border  p-3'>
+                                <DndContext
+                                    sensors={sensors}
+                                    onDragStart={onDragStart}
+                                    onDragEnd={onDragEnd}
+                                // onDragOver={onDragOver}
+                                >
+                                    <div className="container mx-auto p-4">
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                                            <SortableContext items={imagesId}>
+                                                {images.map((image, i) => (
+                                                    <ImageContainer
+                                                        key={image.id}
+                                                        i={i}
+                                                        image={image}
+                                                        handleImageClick={handleImageClick}
+                                                    />
+
+                                                ))}
+
+                                                <div
+                                                    onClick={() => { createNewImage(); }}
+                                                    className="border-dotted border-2 border-gray-300 sm:col-span-1 sm:row-span-1 md:col-span-1 md:row-span-1 lg:col-span-1 lg:row-span-1"
+                                                >
+                                                    <img src={add_pic} alt="add_image" 
+                                                    className="w-full h-auto cursor-pointer"
+                                                    />
+                                                </div>
+
+                                            </SortableContext>
+                                        </div>
+                                    </div>
+                                </DndContext>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-        </div>
+
 
 
     );

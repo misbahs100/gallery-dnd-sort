@@ -8,7 +8,9 @@ function App() {
   return (
     <>
       <div className="bg-gray-300 pb-12">
+        <div className="pt-20">
         <h1 className='text-2xl text-center'>Ollyo Gallery</h1>
+        </div>
         <ImageGallery />
       </div>
     </>

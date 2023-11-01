@@ -7,8 +7,10 @@ function App() {
 
   return (
     <>
-      <h1 className='text-2xl text-center mt-24'>Ollyo Gallery</h1>
-      <ImageGallery />
+      <div className="bg-gray-300 pb-12">
+        <h1 className='text-2xl text-center'>Ollyo Gallery</h1>
+        <ImageGallery />
+      </div>
     </>
   )
 }

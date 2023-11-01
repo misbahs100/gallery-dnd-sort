@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Hide the checkbox by default */
+.checkbox-hidden {
+  display: none;
+}
+
+/* Make the checkbox visible on hover */
+.checkbox-visible:hover .checkbox-hidden {
+  display: block;
+}
+
+
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

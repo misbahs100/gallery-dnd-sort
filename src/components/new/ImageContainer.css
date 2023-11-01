@@ -1,0 +1,10 @@
+/* Hide the checkbox by default */
+.checkbox-hidden {
+    display: none;
+  }
+  
+  /* Make the checkbox visible on hover */
+  .checkbox-visible:hover .checkbox-hidden {
+    display: block;
+  }
+  

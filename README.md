@@ -1,9 +1,30 @@
-# React + Vite
+# Sortable Image Gallery with DnD
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a minimal image gallery with the following features:
 
-Currently, two official plugins are available:
+- Drag and drop images to rearrange them with smooth experience within the gallery.
+- Sort and organize images based on your preference.
+- One Feature image presenting in the gallery.
+- Select and deselect images for bulk operations.
+- A responsive design that adapts to various screen sizes.
+- Easily add, remove, and manage images in the gallery.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-"# gallery-dnd-sort" 
+## Technologies Used
+
+- React.js: A JavaScript library for building user interfaces.
+- Vite: A fast build tool that bundles your code with blazing speed.
+- Tailwind CSS: A utility-first CSS framework.
+- DnD Kit: A modern drag-and-drop library for React.
+
+## Live Demo
+
+To see this project in action, you can visit the [Live Link](https://chimerical-piroshki-a268c9.netlify.app/).
+
+## Contributing
+
+Contributions are welcome! Feel free to open issues or pull requests to help improve this project.
+
+## Contact
+
+For any inquiries or feedback, please contact [through email](mailto:misbahuddins100@gmail.com)
+

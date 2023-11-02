@@ -3,10 +3,11 @@
 This project is a minimal image gallery with the following features:
 
 - Drag and drop images to rearrange them with smooth experience within the gallery.
-- Sort and organize images based on your preference.
+- Sort and organize lazy-loaded-images based on user preference.
 - One Feature image presenting in the gallery.
 - Select and deselect images for bulk operations.
 - A responsive design that adapts to various screen sizes.
+- Featured Image: Always the first one for large, medium and small screens.
 - Easily add, remove, and manage images in the gallery.
 
 ## Technologies Used

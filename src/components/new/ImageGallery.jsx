@@ -186,7 +186,7 @@ const ImageGallery = () => {
                     <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                         <div className="px-4 py-5 flex-auto">
                             <div className='mt-2 mb-4 border flex justify-between p-5'>
-                                <div> {selectedImages.length == 0 ? 'Ollyo Gallery' : (selectedImages.length == 1 ? `${selectedImages.length} File Selected` : `${selectedImages.length} Files Selected`)}</div>
+                                <div> {selectedImages.length == 0 ? 'Ollyo Gallery' : (selectedImages.length == 1 ? ` ${selectedImages.length} File Selected` : `${selectedImages.length} Files Selected`)}</div>
                                 <div>
                                     {selectedImages.length > 0 && (
                                         <p

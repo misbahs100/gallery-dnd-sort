@@ -10,6 +10,7 @@ import pic_9 from '../../assets/images/image-9.webp'
 import pic_10 from '../../assets/images/image-10.jpeg'
 import pic_11 from '../../assets/images/image-11.jpeg'
 import add_pic from '../../assets/images/add2.jpeg'
+import checked_pic from '../../assets/images/checked.png'
 import { useMemo, useState } from "react";
 import ImageContainer from './ImageContainer'
 import {
@@ -72,9 +73,9 @@ const ImageGallery = () => {
 
     const createNewImage = () => {
         const imageToAdd = {
+            // generating new id for newly created image
             id: generateId(),
         };
-        console.log(imageToAdd)
         setImages([...images, imageToAdd]);
     }
 
@@ -84,7 +85,6 @@ const ImageGallery = () => {
     }
 
     const onDragStart = (event) => {
-        // console.log(event)
         setActiveImage(event.active.data.current?.sortable.index);
         return;
 
@@ -95,98 +95,47 @@ const ImageGallery = () => {
 
         const { active, over } = event;
         if (!over) return;
-        // console.log(over.id)
 
         const activeId = active.id;
         const overId = over.id;
 
         if (activeId === overId) return;
 
-        console.log("DRAG END");
+        // console.log("DRAG END");
 
         setImages((images) => {
             const activeImageIndex = images.findIndex((img) => img.id === activeId);
-
             const overImageIndex = images.findIndex((img) => img.id === overId);
-
-            console.log(activeImageIndex)
-
             return arrayMove(images, activeImageIndex, overImageIndex);
         });
     }
 
 
-
-
-
     return (
-
-        // <div
-        //     className="m-auto flex   w-full items-center overflow-x-auto overflow-y-hidden px-[40px]"
-        //     style={{ border: '5px solid green' }}
-        // >
-        //     <DndContext
-        //         sensors={sensors}
-        //         onDragStart={onDragStart}
-        //         onDragEnd={onDragEnd}
-        //     // onDragOver={onDragOver}
-        //     >
-        //         <div className="m-auto flex gap-4">
-        //             <div className="flex flex-wrap gap-4">
-        //                 <SortableContext items={imagesId}>
-        //                     {images.map((image) => (
-        //                         <ImageContainer
-        //                             key={image.id}
-        //                             image={image}
-        //                             handleImageClick={handleImageClick}
-        //                         />
-        //                     ))}
-
-        //                     <button
-        //                         onClick={() => { createNewImage(); }}
-        //                         className=" h-[100px] w-[150px] min-w-[150px] cursor-pointer rounded-lg bg-mainBackgroundColor border-2 border-columnBackgroundColor  p-4 ring-rose-500  hover:ring-2 flex  gap-2 "
-        //                     >
-        //                         Add Image
-        //                     </button>
-        //                 </SortableContext>
-        //             </div>
-        //         </div>
-
-        //         {/* if the dragging has to work while scrolling: DrgOverlay */}
-        //         {/* {createPortal(
-        //             <DragOverlay>
-        //                 {activeImage && (
-        //                     <ImageContainer
-        //                         image={activeImage}
-        //                     />
-        //                 )}
-        //             </DragOverlay>,
-        //             document.body
-        //         )} */}
-        //     </DndContext>
-
-        //     {/* showing deletion bar */}
-        //     <div className="my-4 ">
-        //         <p>{`${selectedImages.length} image(s) selected`}</p>
-        //         {selectedImages.length > 0 && (
-        //             <button
-        //                 className="bg-red-500 text-white px-4 py-2 rounded ml-4"
-        //                 onClick={handleDeleteSelected}
-        //             >
-        //                 Delete Selected
-        //             </button>
-        //         )}
-        //     </div>
-        // </div>
-
-
         <section className="">
             <div className="container mx-auto px-4 mt-5">
                 <div className="lg:pt-12 pt-6 w-full md:w-12/12 px-4 text-center">
                     <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                         <div className="px-4 py-5 flex-auto">
                             <div className='mt-2 mb-4 border flex justify-between p-5'>
-                                <div> {selectedImages.length == 0 ? 'Ollyo Gallery' : (selectedImages.length == 1 ? ` ${selectedImages.length} File Selected` : `${selectedImages.length} Files Selected`)}</div>
+                                <div>
+                                    {
+                                        selectedImages.length == 0 ?
+                                            <p>Ollyo Gallery</p> :
+                                            (
+                                                selectedImages.length == 1 ?
+                                                    <div className='flex '>
+                                                        <img src={checked_pic} style={{ width: '25px' }} alt="..." />
+                                                        <p className='ml-1'>{selectedImages.length} File Selected</p>
+                                                    </div> :
+                                                    <div className='flex '>
+                                                        <img src={checked_pic} style={{ width: '25px' }} alt="..." />
+                                                        <p className='ml-1'>{selectedImages.length} Files Selected</p>
+                                                    </div>
+                                            )
+
+                                    }
+                                </div>
                                 <div>
                                     {selectedImages.length > 0 && (
                                         <p
@@ -198,12 +147,13 @@ const ImageGallery = () => {
                                     )}
                                 </div>
                             </div>
+                            
+                            {/* gallery starts */}
                             <div className='mt-2 mb-4 border  p-3'>
                                 <DndContext
                                     sensors={sensors}
                                     onDragStart={onDragStart}
                                     onDragEnd={onDragEnd}
-                                // onDragOver={onDragOver}
                                 >
                                     <div className="container mx-auto p-4">
                                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
@@ -218,12 +168,13 @@ const ImageGallery = () => {
 
                                                 ))}
 
+                                                {/* Add Image button which will create a new space */}
                                                 <div
                                                     onClick={() => { createNewImage(); }}
                                                     className="border-dotted border-2 border-gray-300 sm:col-span-1 sm:row-span-1 md:col-span-1 md:row-span-1 lg:col-span-1 lg:row-span-1"
                                                 >
-                                                    <img src={add_pic} alt="add_image" 
-                                                    className="w-full h-auto cursor-pointer"
+                                                    <img src={add_pic} alt="add_image"
+                                                        className="w-full h-auto cursor-pointer"
                                                     />
                                                 </div>
 
@@ -245,3 +196,21 @@ const ImageGallery = () => {
 };
 
 export default ImageGallery;
+
+
+
+    // //if the dragging has to work while scrolling: DrgOverlay */ }
+    // <DndContext >
+    // {
+    //     createPortal(
+    //         <DragOverlay>
+    //             {activeImage && (
+    //                 <ImageContainer
+    //                     image={activeImage}
+    //                 />
+    //             )}
+    //         </DragOverlay>,
+    //         document.body
+    //     )
+    // } 
+    // </DndContext >
